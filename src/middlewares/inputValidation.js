@@ -18,7 +18,7 @@ exports.inputValidation = [
         .withMessage("Password Cannot be empty")
         .bail()
         .isLength({ min: 5, max: 15 })
-        .withMessage("Password length must be inbetween 5 to 15"),
+        .withMessage("Password length must be in between 5 to 15"),
     check('confirmPassword')
         .notEmpty()
         .withMessage("Confirm-Password Cannot be empty")

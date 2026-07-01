@@ -6,6 +6,7 @@ try {
 
 return result
 } catch (error) {
-throw error
+ error.status=500;
+ error.message="User not registered Due to Database issue"
 }
 }

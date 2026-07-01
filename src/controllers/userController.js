@@ -1,5 +1,6 @@
 const userModel=require("../model/userModel")
 const {validationResult}=require("express-validator")
+const bycrypt=require("bcryptjs")
 exports.registerUser=async(req , res , next)=>{
     try {
 
@@ -15,8 +16,19 @@ if(!error.isEmpty()){
         const email = req.body.email;
         const password= req.body.password
         const role = req.body.role
-        
-      const registeredUser=  await userModel.RegisterUser(name,email,password,role)
+        const saltRound=10;
+        const encryptedPassword=await bycrypt.hash(password,saltRound)
+      const registeredUser=  await userModel.RegisterUser(name,email,encryptedPassword,role)
+      res.status(201).json({
+        message:"User Register Successfully",
+        data:{
+            id: registeredUser.rows[0].id,
+            name: registeredUser.rows[0].name,
+            email: registeredUser.rows[0].email,
+            role: registeredUser.rows[0].role,
+            createdat: registeredUser.rows[0].createdat
+        }
+      })
     } catch (error) {
         next(error)
     }

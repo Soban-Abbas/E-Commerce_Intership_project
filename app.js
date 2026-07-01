@@ -4,6 +4,7 @@ const { pool } = require("./database/pool")
 const { createTables } = require("./database/initTables")
 const userRoutes=require("./src/routes/userRoutes")
 const bodyParser=require("body-parser")
+const { globalErrorMiddleware }=require("./src/middlewares/globalErrorHandling")
 const app = express();
 app.use(bodyParser.json())
 
@@ -28,7 +29,7 @@ app.use('/',async(req,res, next)=>{
 
 
 
-
+app.use(globalErrorMiddleware)
 
 
 async function StartApp() {
