@@ -5,6 +5,7 @@ const { createTables } = require("./database/initTables")
 const userRoutes=require("./src/routes/userRoutes")
 const bodyParser=require("body-parser")
 const { globalErrorMiddleware }=require("./src/middlewares/globalErrorHandling")
+const productRoutes=require("./src/routes/productRoutes")
 const app = express();
 app.use(bodyParser.json())
 
@@ -15,7 +16,7 @@ app.use(bodyParser.json())
 
 
 app.use('/api/tasks',userRoutes);
-
+app.use('/api/tasks/',productRoutes)
 
 
 
