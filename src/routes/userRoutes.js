@@ -6,6 +6,7 @@ const router=express.Router();
 
 
 router.post('/register',inputValidation,userControllers.registerUser)
+router.post('/login',userControllers.loginUser)
 
 
 module.exports=router

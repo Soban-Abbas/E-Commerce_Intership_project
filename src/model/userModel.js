@@ -10,3 +10,11 @@ return result
  error.message="User not registered Due to Database issue"
 }
 }
+exports.getUserByEmail=async(email)=>{
+try {
+    const findUser=await pool.query('SELECT * FROM users where email=$1',[email])
+    return findUser;
+} catch (error) {
+    throw error
+}
+}
