@@ -21,3 +21,13 @@ exports.getProducts=async()=>{
     }
 
 }
+
+
+exports.deleteProduct=async(id,ProductOwnerId)=>{
+    try {
+        const result = await pool.query('delete from products where id=$1 AND productOwnerId=$2', [id, ProductOwnerId])
+        return result;
+    } catch (error) {
+        throw error
+    }
+}

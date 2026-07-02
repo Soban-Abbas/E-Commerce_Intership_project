@@ -69,3 +69,22 @@ exports.getAllProducts=async(req,res,next)=>{
     }
     
 }
+
+exports.deleteProduct=async(req,res,next)=>{
+    try {
+        const productOwnerId=req.user.id;
+        const id=req.params.productId;
+        const delteProduct=await productModel.deleteProduct(id,productOwnerId)
+        if(delteProduct.rowCount<1){
+           return res.status(405).json({
+                error:"Not Allowed to Delete that product"
+            })
+        }
+        res.status(200).json({
+            message:"Product deleted Successfully"
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+

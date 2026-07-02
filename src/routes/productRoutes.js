@@ -6,4 +6,5 @@ const {islogin}=require("../middlewares/islogin")
 const {isAdmin}=require("../middlewares/isAdmin")
 router.post("/product", islogin, isAdmin,validateProductInfo,productControllers.addNewProduct)
 router.get("/product",islogin,productControllers.getAllProducts)
+router.delete('/product/:productId',islogin,isAdmin,productControllers.deleteProduct)
 module.exports=router
